@@ -1,0 +1,18 @@
+<h1>All Items</h1>
+
+<table>
+	<tr>
+		<td>ID</td>
+		<td>Name</td>
+		<td>Quantity</td>
+		<td>Amount</td>
+	</tr>
+	<% items.forEach(function(item) { %>
+	<tr>
+		<td><%= item.id %></td>
+		<td><%= item.name %></td>
+		<td><%= item.qty %></td>
+		<td><%= item.amount %></td>
+	</tr>
+	<% }); %>
+</table>

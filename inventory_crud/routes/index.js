@@ -6,7 +6,7 @@ var db = mysql.createPool({
 	host: "localhost",
 	user: "root",
 	password: "password",
-	databse: "inventory"
+	database: "inventory"
 });
 
 /* GET home page. */
@@ -20,6 +20,12 @@ router.get("/testconnect", function(req, res, next) {
 	} else {
 		res.send("Connection Failed");
 	}
+});
+
+router.get("/select", function(req, res, next) {
+	db.query("SELECT * FROM items", function(err, rs) {
+		res.render("select", { items: rs });
+	});
 });
 
 module.exports = router;
