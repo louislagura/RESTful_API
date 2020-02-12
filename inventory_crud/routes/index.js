@@ -14,6 +14,7 @@ router.get("/", function(req, res, next) {
 	res.render("index", { title: "Express" });
 });
 
+//Test databse connection
 router.get("/testconnect", function(req, res, next) {
 	if (db != null) {
 		res.send("Connected Successfully");
@@ -22,9 +23,23 @@ router.get("/testconnect", function(req, res, next) {
 	}
 });
 
+//Display all values
 router.get("/select", function(req, res, next) {
 	db.query("SELECT * FROM items", function(err, rs) {
 		res.render("select", { items: rs });
+	});
+});
+
+//Insert value
+router.get("/form", function(req, res, next) {
+	res.render("form");
+});
+
+router.post("/form", function(req, res, next) {
+	db.query("INSERT INTO items SET ?", req.body, function(err, rs) {
+		res.send(
+			"Item has been added <div><a href='/select'><button>Back</button></a></div>"
+		);
 	});
 });
 
