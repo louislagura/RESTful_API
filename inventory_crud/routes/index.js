@@ -11,7 +11,7 @@ var db = mysql.createPool({
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-	res.render("index", { title: "Express" });
+	res.redirect("select");
 });
 
 //Test databse connection
@@ -46,6 +46,20 @@ router.post("/form", function(req, res, next) {
 //Delete value
 router.get("/delete", function(req, res, next) {
 	db.query("DELETE FROM items WHERE id = ?", req.query.id, function(err, rs) {
+		res.redirect("select");
+	});
+});
+
+//Update value
+router.get("/update", function(req, res, next) {
+	db.query("SELECT * FROM items WHERE id = ?", req.query.id, function(err, rs) {
+		res.render("edit", { items: rs[0] });
+	});
+});
+
+router.post("/update", function(req, res, next) {
+	var param = [req.body, req.query.id];
+	db.query("UPDATE items SET ? WHERE id = ?", param, function(err, rs) {
 		res.redirect("select");
 	});
 });

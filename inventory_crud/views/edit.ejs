@@ -1,0 +1,12 @@
+<form method="post">
+	<div>Name: <input name="name" value="<%= items.name %>" /></div>
+	<div>
+		Quantity: <input name="qty" type="number" value="<%= items.qty %>"" />
+	</div>
+	<div>
+		Amount: <input name="amount" type="number" value="<%= items.amount %>"" />
+	</div>
+	<button>Save</button>
+	<input type="hidden" value="<%= items.id %>" />
+</form>
+<a href="/select"><button>Back</button></a>
