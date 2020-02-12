@@ -15,6 +15,13 @@
 		<td><%= item.name %></td>
 		<td><%= item.qty %></td>
 		<td><%= item.amount %></td>
+		<td>
+			<a
+				href="/delete?id=<%= item.id %>"
+				onClick="return confirm('Are you sure to delete this item?')"
+				>Delete</a
+			>
+		</td>
 	</tr>
 	<% }); %>
 </table>
